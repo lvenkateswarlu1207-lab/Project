@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Employee Management System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-frame">
+      <header class="masthead">
+        <div class="masthead-left">
+          <p class="eyebrow">Personnel ledger · live roster</p>
+          <h1>Employee Management System</h1>
+        </div>
+        <div class="clock-block" id="clockBlock">
+          <p><span>Today:</span> <strong id="todayDate">—</strong></p>
+          <p><span>Time:</span> <strong id="currentTime">—</strong></p>
+        </div>
+      </header>
+
+      <p id="statusMessage" class="status-banner" role="status">Loading employees...</p>
+
+      <section class="stats-row" aria-label="Dashboard totals">
+        <article class="stat-card">
+          <p class="stat-label" id="countLabel">Total Employees</p>
+          <p class="stat-value" id="employeeCount">0</p>
+        </article>
+        <article class="stat-card">
+          <p class="stat-label">Total Salary</p>
+          <p class="stat-value" id="totalSalary">₹0</p>
+        </article>
+        <article class="stat-card">
+          <p class="stat-label">Average Salary</p>
+          <p class="stat-value" id="averageSalary">₹0</p>
+        </article>
+        <article class="stat-card highlight">
+          <p class="stat-label">Highest Paid Employee</p>
+          <p class="stat-value small" id="highestPaid">—</p>
+        </article>
+      </section>
+
+      <section class="toolbar">
+        <form id="searchForm" class="search-row">
+          <label for="searchInput">Search Employee</label>
+          <input
+            id="searchInput"
+            type="text"
+            placeholder="Search by name..."
+            autocomplete="off"
+          />
+          <button type="submit" class="btn btn-dark">Search</button>
+        </form>
+
+        <div class="filter-row" id="departmentFilters">
+          <button type="button" class="chip active" data-department="All">All Employees</button>
+          <button type="button" class="chip" data-department="IT">IT</button>
+          <button type="button" class="chip" data-department="HR">HR</button>
+          <button type="button" class="chip" data-department="Finance">Finance</button>
+          <button type="button" class="chip" data-department="Marketing">Marketing</button>
+        </div>
+
+        <div class="sort-row">
+          <span>Sort</span>
+          <button type="button" class="sort-btn" data-sort="name">Name ↑</button>
+          <button type="button" class="sort-btn" data-sort="age">Age ↑</button>
+          <button type="button" class="sort-btn" data-sort="salary">Salary ↑</button>
+        </div>
+      </section>
+
+      <section id="employeeGrid" class="employee-grid" aria-live="polite"></section>
+
+      <section class="add-panel">
+        <h2>Add Employee</h2>
+        <ul id="formErrors" class="form-errors" hidden></ul>
+        <form id="addForm" class="add-form">
+          <label>
+            Name
+            <input id="nameInput" type="text" placeholder="Full name" />
+          </label>
+          <label>
+            Age
+            <input id="ageInput" type="number" min="1" placeholder="Age" />
+          </label>
+          <label>
+            Email
+            <input id="emailInput" type="email" placeholder="name@company.com" />
+          </label>
+          <label>
+            Department
+            <select id="departmentInput">
+              <option value="">Select department</option>
+              <option value="IT">IT</option>
+              <option value="HR">HR</option>
+              <option value="Finance">Finance</option>
+              <option value="Marketing">Marketing</option>
+            </select>
+          </label>
+          <label>
+            Salary
+            <input id="salaryInput" type="number" min="1" placeholder="50000" />
+          </label>
+          <button type="submit" class="btn btn-accent">Add Employee</button>
+        </form>
+      </section>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
